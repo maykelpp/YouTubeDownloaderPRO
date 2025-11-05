@@ -73,8 +73,9 @@ def health():
     return jsonify({'status': 'ok', 'stats': stats}), 200
 
 if __name__ == "__main__":
-    # Puerto dinámico para Render.com
-    port = int(os.environ.get("PORT", 10000))
+    import os
+    port = int(os.environ.get("PORT", 8080))  # ← OJO: usa PORT del sistema
+    app.run(host="0.0.0.0", port=port)
     
     print("\n" + "="*80)
     print(" "*10 + "🎵 YOUTUBE DOWNLOADER PRO - 100% GRATIS 💚")
