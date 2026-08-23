@@ -1,0 +1,40 @@
+# Entornos y secretos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Descargas y datos temporales
+downloads/*
+/tmp/
+*.log
+
+# Bases de datos locales
+*.db
+*.sqlite
+*.sqlite3
+instance/
+
+# Credenciales / tokens / cookies (nunca deben subirse)
+*cookies*
+*credentials*
+*secrets*
+*token*
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Backups locales generados durante el desarrollo
+*.bak

@@ -1,0 +1,47 @@
+{% extends "_layout.html" %}
+{% block title %}Soporte - YouTube Downloader PRO{% endblock %}
+{% block content %}
+<h1>Soporte / Reportar un problema</h1>
+<form method="POST" action="{{ url_for('support.support_form') }}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+<label for="name">Nombre</label>
+<input type="text" id="name" name="name" required value="{{ form.name if form else '' }}">
+
+<label for="email">Correo</label>
+<input type="email" id="email" name="email" required value="{{ form.email if form else '' }}">
+
+<label for="issue_type">Tipo de problema</label>
+<select id="issue_type" name="issue_type" required>
+<option value="">Selecciona una opción</option>
+{% for t in issue_types %}
+<option value="{{ t }}" {% if form and form.issue_type == t %}selected{% endif %}>{{ t }}</option>
+{% endfor %}
+</select>
+
+<label for="title">Título</label>
+<input type="text" id="title" name="title" required value="{{ form.title if form else '' }}">
+
+<label for="description">Descripción</label>
+<textarea id="description" name="description" required>{{ form.description if form else '' }}</textarea>
+
+<label for="related_url">URL relacionada (opcional)</label>
+<input type="text" id="related_url" name="related_url" value="{{ form.related_url if form else '' }}">
+
+<label for="video_id">Video ID (opcional)</label>
+<input type="text" id="video_id" name="video_id" value="{{ form.video_id if form else '' }}">
+
+<label for="error_message">Mensaje de error (opcional)</label>
+<textarea id="error_message" name="error_message">{{ form.error_message if form else '' }}</textarea>
+
+<hr style="border-color:rgba(255,255,255,0.1);margin-top:24px">
+<p class="hint" style="margin-top:14px">Cuéntanos un poco más (no incluyas contraseñas, tokens ni cookies):</p>
+
+{% for q in questionnaire %}
+<label for="q_{{ q.key }}">{{ q.question }}</label>
+<textarea id="q_{{ q.key }}" name="q_{{ q.key }}"></textarea>
+{% endfor %}
+
+<button type="submit" class="btn">Enviar reporte</button>
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "_layout.html" %}
+{% block title %}Mi cuenta - YouTube Downloader PRO{% endblock %}
+{% block content %}
+<h1>Mi cuenta</h1>
+<label>Nombre</label>
+<input type="text" value="{{ user.name }}" disabled>
+<label>Correo</label>
+<input type="text" value="{{ user.email }}" disabled>
+<label>Estado</label>
+<input type="text" value="{{ 'Correo verificado' if user.email_verified else 'Correo sin verificar' }}" disabled>
+<a href="{{ url_for('auth.logout') }}" class="btn" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box">Cerrar sesión</a>
+{% endblock %}

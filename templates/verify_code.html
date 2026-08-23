@@ -1,0 +1,17 @@
+{% extends "_layout.html" %}
+{% block title %}Verifica tu identidad - YouTube Downloader PRO{% endblock %}
+{% block content %}
+<h1>Verifica tu identidad</h1>
+<p class="hint">Enviamos un código de 6 dígitos a tu correo. Expira pronto, así que ingrésalo lo antes posible.</p>
+<form method="POST" action="{{ url_for('auth.verify_code') }}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label for="code">Código de 6 dígitos</label>
+<input type="text" id="code" name="code" class="code-input" inputmode="numeric" pattern="\d{6}" maxlength="6" autocomplete="one-time-code" required>
+<button type="submit" class="btn">Verificar</button>
+</form>
+
+<form method="POST" action="{{ url_for('auth.resend_code') }}" style="margin-top:10px">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<button type="submit" class="btn btn-secondary">Reenviar código</button>
+</form>
+{% endblock %}
